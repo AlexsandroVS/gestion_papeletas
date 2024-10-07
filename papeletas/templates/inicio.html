@@ -1,0 +1,14 @@
+<!-- templates/papeletas/inicio.html -->
+{% extends 'papeletas/base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Bienvenido a la Gestión de Papeletas</h1>
+    <p>Aquí puedes gestionar conductores, infracciones y papeletas.</p>
+    <a href="{% url 'listar_conductores' %}" class="btn btn-primary">Ver Conductores</a>
+    <a href="{% url 'listar_infracciones' %}" class="btn btn-primary">Ver Infracciones</a>
+    <a href="{% url 'listar_papeletas' %}" class="btn btn-primary">Ver Papeletas</a>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'papeletas/base.html' %}
+
+{% block title %}{% if papeleta %}Editar Papeleta{% else %}Registrar Papeleta{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="mt-4">{% if papeleta %}Editar{% else %}Registrar{% endif %} Papeleta</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="conductor">Conductor:</label>
+                <select id="conductor" name="conductor" class="form-control">
+                    {% for conductor in conductores %}
+                        <option value="{{ conductor.id }}" {% if papeleta.conductor.id == conductor.id %}selected{% endif %}>{{ conductor.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="infraccion">Infracción:</label>
+                <select id="infraccion" name="infraccion" class="form-control">
+                    {% for infraccion in infracciones %}
+                        <option value="{{ infraccion.id }}" {% if papeleta.infraccion.id == infraccion.id %}selected{% endif %}>{{ infraccion.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" value="{{ papeleta.fecha|date:'Y-m-d' }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{% if papeleta %}Actualizar{% else %}Registrar{% endif %}</button>
+        </form>
+    </div>
+{% endblock %}

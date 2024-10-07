@@ -1,0 +1,33 @@
+{% extends 'papeletas/base.html' %}
+
+{% block title %}Listado de Papeletas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Listado de Papeletas</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Conductor</th>
+                <th>Infracción</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for papeleta in papeletas %}
+            <tr>
+                <td>{{ papeleta.conductor.nombre }}</td>
+                <td>{{ papeleta.infraccion.descripcion }}</td>
+                <td>{{ papeleta.fecha }}</td>
+                <td>
+                    <a href="{% url 'editar_papeleta' papeleta.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_papeleta' papeleta.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'crear_papeleta' %}" class="btn btn-primary">Agregar Papeleta</a>
+</div>
+{% endblock %}

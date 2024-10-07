@@ -1,0 +1,18 @@
+{% extends 'papeletas/base.html' %}
+
+{% block title %}Agregar/Editar Infracción{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{% if infraccion %}Editar{% else %}Agregar{% endif %} Infracción</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ infraccion.descripcion|default:'' }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'listar_infracciones' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
